@@ -18,6 +18,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        
         // Do any additional setup after loading the view, typically from a nib.
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
@@ -31,7 +35,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 self.locationManager.requestWhenInUseAuthorization()
             }
         }
+        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.latlon), userInfo: nil, repeats: true)
+        
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    func latlon(){
+        
+        print(lat)
+        print(lon)
+        
+//        let postString = "lat=\(lat)"
+//        
+//        var request = URLRequest(url: URL(string: "http://localhost/Experiments/Swift_MySQL/submit.php")!)
+//        request.httpMethod = "POST"
+//        request.httpBody = postString.data(using: .utf8)
+//        
+//        let task = URLSession.shared.dataTask(with: request, completionHandler: {
+//            (data, response, error) in
+//            
+//            if error != nil {
+//                print(error ?? <#default value#>)
+//                return
+//            }
+//            
+//            print("response: \(response!)")
+//            
+//            let phpOutput = String(data: data!, encoding: .utf8)!
+//            print("php output: \(phpOutput)")
+//        })
+//        task.resume()
+//
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
